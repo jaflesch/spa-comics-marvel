@@ -1,0 +1,107 @@
+/* Container */
+.Container {
+    position: fixed;
+    top: -25%;
+    width: 720px;
+    left: 50%;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    z-index: 1;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+.Container.Animation {
+    top: 30px;
+    opacity: 1;
+    z-index: 999999;
+}
+.Container.Large {
+    width: 90%;
+    left: 5%;
+    transform: none;
+}
+.Container.Small { width: 480px; }
+
+@media(max-width: 767px) {
+    .Container, .Container.Large { 
+        width: calc(100% - 30px);
+        left: 15px;
+        transform: none;
+    }
+    .Container.Small {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+@media(max-width: 510px) {
+    .Container.Small { 
+        width: calc(100% - 30px);
+        left: 15px;
+        transform: none;
+    }
+}
+
+/* Header */
+.Header {
+    padding: 15px;
+    display: flex;
+}
+.Title {
+    flex-grow: 3;
+    color: #333;
+    margin: 0;
+}
+.CloseButton {
+    display: inline-block;
+    background: #fff;
+    color: #0538ad;
+    line-height: 26px;
+    font-size: 28px;
+    text-align: center;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #0538ad;
+    cursor: pointer;
+}
+.CloseButton:hover, .CloseButton:focus {
+    background: #0538ad;
+    color: #fff;
+}
+
+/* Body */
+.Body { padding: 15px; }
+
+.Button {
+    display: block;    
+    font-size: 13px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    padding: 12px 24px;
+    margin: 0 4px 0 0;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.Button.Confirm {
+    background: #0538ad;
+    color: #fff;
+}
+.Button.Cancel {
+    background: #fff;
+    color: #0538ad;
+}
+.Button.Cancel:hover { color: #042a82; }
+.Button.Confirm:hover { background: #042a82; }
+.Button.Confirm:disabled { display: none; }
+
+/* Footer */
+.Footer {
+    display: flex;
+    padding: 15px;
+    justify-content: flex-end;
+    border-top: 1px solid #ddd;
+}
