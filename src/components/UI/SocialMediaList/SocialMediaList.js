@@ -1,4 +1,4 @@
-import SocialMediaListCSS from './SocialMediaList.module.css'
+import SocialMediaListCSS from './SocialMediaList.module.scss'
 import SocialMediaLink from '../SocialMediaLink/SocialMediaLink'
 
 const socialMediaList = (props) => {

@@ -2,10 +2,12 @@ import React, { Component, Fragment } from 'react'
 import MarvelAPI from '../services/MarvelApi'
 import Header from '../components/Header/Header'
 import MainContent from '../components/MainContent/MainContent'
+import Form from '../components/Form/Form'
 import Footer from '../components/Footer/Footer'
 import CardList from '../components/CardList/CardList'
 import Modal from '../components/UI/Modal/Modal'
 import SocialMediaList from '../components/UI/SocialMediaList/SocialMediaList'
+import Project from '../utils/Project'
 import LayoutCSS from './Layout.module.css'
 
 class Layout extends Component {
@@ -68,6 +70,7 @@ class Layout extends Component {
 	}
 
 	searchComicsHandler = (event) => {
+		event.preventDefault()
 		this.fetchComics(this.searchTitle)
 	}
 
@@ -102,9 +105,13 @@ class Layout extends Component {
                 <Header />
 				
 				<MainContent>
-					<input type="text" onChange={this.inputChangedHandler} />
-					<button onClick={this.searchComicsHandler}>Pesquisar</button>
+					<Form
+						changed={ this.inputChangedHandler }
+						submited={ this.searchComicsHandler }
+					/>
+
 					{ element}
+
 					<CardList 
 						comics={comics} 
 						clickedComic={ this.showMoreHandler }
@@ -114,7 +121,7 @@ class Layout extends Component {
                 <Footer>
 					<SocialMediaList list={ this.socialMedia } />
 					<p>
-						&copy;{ this.currentYear } Jean Flesch
+						&copy;{ this.currentYear } { Project.author }
 					</p>
 				</Footer>
 			</Fragment>
