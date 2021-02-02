@@ -1,4 +1,4 @@
-import LoaderClass from './Loader.module.css'
+import LoaderClass from './Loader.module.scss'
 
 const loader = props => {
     let element = null

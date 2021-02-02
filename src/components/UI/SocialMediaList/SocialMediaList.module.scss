@@ -3,12 +3,12 @@
     list-style: none;
     font-size: 1.25rem;
     padding: 0;
-    margin: 0 0 5px;
+    margin: 0 0 6px;
 
     > li {
         display: inline-block;
     
-        + li { margin-left: 4px; }
+        + li { margin-left: 6px; }
     
         > a {
             color: #202020;

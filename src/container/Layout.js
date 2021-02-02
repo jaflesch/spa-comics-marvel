@@ -32,11 +32,13 @@ class Layout extends Component {
     state = {
 		comics: [],
 		comicDetail: null,
-		isLoading: true,
-		isModalOpen: false
+		isLoading: false,
+		isModalOpen: false,
+		networkError: false
 	}
 
     componentDidMount() {
+		this.setState({isLoading: true })
 		this.fetchComics('Marv')
     }
     
@@ -46,7 +48,13 @@ class Layout extends Component {
 
 		marvelAPIInstance.getComics(title).then((response) => {
 			this.setState({
-				comics: response.data,
+				comics: response.data.results,
+				isLoading: false
+			})
+		})
+		.catch((err) => {
+			this.setState({
+				comics: -1,
 				isLoading: false
 			})
 		})
@@ -56,7 +64,6 @@ class Layout extends Component {
 		let marvelAPIInstance = new MarvelAPI()
 
 		marvelAPIInstance.getComicById(id).then((response) => {
-			console.log('apiisnt:::', response)
 			this.setState({
 				comicDetail: response.data.results[0],
 				isLoading: false
@@ -88,13 +95,6 @@ class Layout extends Component {
     }
     
     render() {
-        let element = (this.state.isLoading) ? <p>Loading...</p> : <p>Request finished</p>
-		let comics = null
-
-		if (this.state.comics.results && this.state.comics.results.length > 0) {
-			comics = [...this.state.comics.results]
-		}
-
 		return (
 			<Fragment>
 				<Modal 
@@ -110,19 +110,16 @@ class Layout extends Component {
 						submited={ this.searchComicsHandler }
 					/>
 
-					{ element}
-
 					<CardList 
-						comics={comics} 
+						comics={ this.state.comics } 
 						clickedComic={ this.showMoreHandler }
+						loading={ this.state.isLoading }
 					/>
 				</MainContent>
 
                 <Footer>
 					<SocialMediaList list={ this.socialMedia } />
-					<p>
-						&copy;{ this.currentYear } { Project.author }
-					</p>
+					<p>&copy;{ this.currentYear } { Project.author }</p>
 				</Footer>
 			</Fragment>
 		)

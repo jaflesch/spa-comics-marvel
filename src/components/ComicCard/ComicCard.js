@@ -1,4 +1,4 @@
-import ComicCardCSS from './ComicCard.module.css'
+import ComicCardCSS from './ComicCard.module.scss'
 import Button from '../UI/Button/Button'
 
 const comicCard = (props) => {
