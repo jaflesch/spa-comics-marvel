@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import MarvelAPI from './services/MarvelApi'
 import CardList from './components/CardList/CardList'
+import Modal from './components/UI/Modal/Modal'
 import './App.css';
 
 class App extends Component {
@@ -11,7 +12,9 @@ class App extends Component {
 
 	state = {
 		comics: [],
-		isLoading: true
+		comicDetail: null,
+		isLoading: true,
+		isModalOpen: false
 	}
 
 	fetchComics = (title) => {
@@ -25,12 +28,41 @@ class App extends Component {
 		})
 	}
 
+	fetchComicById = (id) => {
+		let marvelAPIInstance = new MarvelAPI()
+
+		marvelAPIInstance.getComicById(id).then((response) => {
+			console.log('apiisnt:::', response)
+			this.setState({
+				comicDetail: response.data.results[0],
+				isLoading: false
+			})
+		})
+	}
+
+	componentDidMount() {
+		this.fetchComics('Marv')
+	}
+
 	inputChangedHandler = (event) => {
 		this.searchTitle = event.target.value
 	}
 
 	searchComicsHandler = (event) => {
 		this.fetchComics(this.searchTitle)
+	}
+
+	showMoreHandler = (id) => {
+		console.log(id)
+		this.setState({ 
+			isModalOpen: true,
+			isLoading: true
+		 })     
+		this.fetchComicById(id)
+	}
+	
+	closeModalHandler = () => {
+		this.setState({ isModalOpen: false})
 	}
 
 	render() {
@@ -42,15 +74,24 @@ class App extends Component {
 		}
 
 		return (
-			<div className="App">
-				<h1>SoftDesign Frontend Challenge</h1>
-				<input type="text" onChange={this.inputChangedHandler} />
-				<button onClick={this.searchComicsHandler}>Pesquisar</button>
-				{ element}
-				<CardList comics={comics} />
-			</div>
+			<Fragment>
+				<Modal 
+					visible={ this.state.isModalOpen }
+					closed={ this.closeModalHandler.bind(this) }
+					title= { this.state.comicDetail ? this.state.comicDetail.title : '' }
+				/>
+				<div className="App">
+					<h1>SoftDesign Frontend Challenge</h1>
+					<input type="text" onChange={this.inputChangedHandler} />
+					<button onClick={this.searchComicsHandler}>Pesquisar</button>
+					{ element}
+					<CardList 
+						comics={comics} 
+						clickedComic={ this.showMoreHandler }
+					/>
+				</div>
+			</Fragment>
 		)
-
 	}
 }
 
