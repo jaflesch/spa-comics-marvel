@@ -1,0 +1,38 @@
+.Alert {
+    width: 100%;
+    border-radius: 2px;
+}
+.Alert.WithType { 
+    display: flex;
+    position: relative;
+    align-items: stretch;
+}
+.Content {
+    align-self: center;
+    padding: 10px;
+}
+.Icon {
+    width: 30px;
+    padding: 10px;    
+    text-align: center;
+    align-self: center;
+}
+.Icon:before {
+    content: "\f071";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1.25em;
+}
+.Warning {
+    background: #fff2cc;
+    color: #7f6000;
+}
+.Warning .Icon { background: #f3dfa6; }
+.Warning .Icon:before { content: "\f071" }
+
+.Danger {
+    background: #ffe5e6;
+    color: #fe464d;
+}
+.Danger .Icon { background: #ffccce; }
+.Danger .Icon:before { content: "\f071" }
