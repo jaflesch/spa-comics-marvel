@@ -11,18 +11,21 @@
     transform: translateX(-50%);
     opacity: 0;
     transition: all 0.3s ease-in-out;
+    
+    &.Animation {
+        top: 30px;
+        opacity: 1;
+        z-index: 999999;
+    }
+    
+    &.Large {
+        width: 90%;
+        left: 5%;
+        transform: none;
+    }
+    
+    &.Small { width: 480px; }
 }
-.Container.Animation {
-    top: 30px;
-    opacity: 1;
-    z-index: 999999;
-}
-.Container.Large {
-    width: 90%;
-    left: 5%;
-    transform: none;
-}
-.Container.Small { width: 480px; }
 
 @media(max-width: 767px) {
     .Container, .Container.Large { 
@@ -56,7 +59,7 @@
 .CloseButton {
     display: inline-block;
     background: #fff;
-    color: #0538ad;
+    color: #000;
     line-height: 26px;
     font-size: 28px;
     text-align: center;
@@ -64,39 +67,29 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    border: 2px solid #0538ad;
+    border: 2px solid #fff;
     cursor: pointer;
-}
-.CloseButton:hover, .CloseButton:focus {
-    background: #0538ad;
-    color: #fff;
+    
+    &:hover, &:focus {
+        background: #fff;
+        color: #f0141e;
+    }
 }
 
 /* Body */
 .Body { padding: 15px; }
-
-.Button {
-    display: block;    
-    font-size: 13px;
-    font-family: 'Montserrat';
-    font-weight: 600;
-    padding: 12px 24px;
-    margin: 0 4px 0 0;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-}
-.Button.Confirm {
-    background: #0538ad;
-    color: #fff;
-}
-.Button.Cancel {
+.Cancel {
     background: #fff;
-    color: #0538ad;
+    border: 0;
+    box-shadow: none;
+    color: #202020;
+    
+    &:hover { 
+        color: #000; 
+        box-shadow: none;
+        background: #fff;
+    }
 }
-.Button.Cancel:hover { color: #042a82; }
-.Button.Confirm:hover { background: #042a82; }
-.Button.Confirm:disabled { display: none; }
 
 /* Footer */
 .Footer {

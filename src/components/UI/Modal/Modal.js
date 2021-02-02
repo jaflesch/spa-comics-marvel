@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react'
 import Backdrop from '../Backdrop/Backdrop'
 import Loader from './../Loader/Loader'
 import Alert from './../Alert/Alert'
-import ModalClass from './Modal.module.css'
+import Button from './../Button/Button'
+import ModalClass from './Modal.module.scss'
 
 class Modal extends Component {
     constructor(props) {
@@ -53,13 +54,12 @@ class Modal extends Component {
                         { this.renderModalBody() }
                     </div>
                     <div className={ ModalClass.Footer }>
-                        <button className={ [ModalClass.Button, ModalClass.Cancel].join(' ') } onClick={ this.props.closed }>Fechar</button>
-                        <button 
-                            className={ [ModalClass.Button, ModalClass.Confirm].join(' ') } 
-                            onClick={ this.props.purchased }
-                        >
-                            Purchase
-                        </button>
+                        <Button classes={ ModalClass.Cancel } onClick={ this.props.closed }>
+                            Fechar
+                        </Button>
+                        <Button onClick={ this.props.purchased }>
+                            Selecionar
+                        </Button>
                     </div>
                 </div>
             </Fragment>

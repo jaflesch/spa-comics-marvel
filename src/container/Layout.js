@@ -34,7 +34,7 @@ class Layout extends Component {
 		comicDetail: null,
 		isLoading: false,
 		isModalOpen: false,
-		networkError: false
+		isLoadingModal: true
 	}
 
     componentDidMount() {
@@ -66,7 +66,7 @@ class Layout extends Component {
 		marvelAPIInstance.getComicById(id).then((response) => {
 			this.setState({
 				comicDetail: response.data.results[0],
-				isLoading: false
+				isLoadingModal: false
 			})
 		})
 	}
@@ -82,16 +82,15 @@ class Layout extends Component {
 	}
 
 	showMoreHandler = (id) => {
-		console.log(id)
 		this.setState({ 
 			isModalOpen: true,
-			isLoading: true
+			isLoadingModal: true
 		 })     
 		this.fetchComicById(id)
 	}
 	
 	closeModalHandler = () => {
-		this.setState({ isModalOpen: false})
+		this.setState({ isModalOpen: false })
     }
     
     render() {
@@ -101,6 +100,7 @@ class Layout extends Component {
 					visible={ this.state.isModalOpen }
 					closed={ this.closeModalHandler.bind(this) }
 					comic={ this.state.comicDetail }
+					loading={ this.state.isLoadingModal }
 				/>
                 <Header />
 				
