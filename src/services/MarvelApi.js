@@ -22,6 +22,13 @@ class MarvelAPI {
             return response.data
         })
     }  
+
+    getComicById (comicId) {
+        return this.axiosInstance.get(`/comics/${comicId}?apikey=${this.publicKey}`).then((response) => {
+            console.log(response.data)
+            return response.data
+        })
+    }  
 }
 
 export default MarvelAPI
