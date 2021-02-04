@@ -8,6 +8,7 @@ import CardList from '../components/CardList/CardList'
 import Modal from '../components/UI/Modal/Modal'
 import SocialMediaList from '../components/UI/SocialMediaList/SocialMediaList'
 import Project from '../utils/Project'
+import Mailer from '../utils/Mailer'
 import LayoutCSS from './Layout.module.css'
 
 class Layout extends Component {
@@ -68,6 +69,19 @@ class Layout extends Component {
 				comicDetail: response.data.results[0],
 				isLoadingModal: false
 			})
+
+			/*
+			const mailerInstance = new Mailer()
+			mailerInstance.setParams({
+				subject: response.data.results[0].title,
+				message: `<img src="${response.data.results[0].thumbnail.path}.${response.data.results[0].thumbnail.extension}" />`,
+				sendTo: 'jean.flesch93@gmail.com'
+			})
+
+			mailerInstance.send((res) => {
+				console.log(res)
+			})
+			*/
 		})
 	}
 
