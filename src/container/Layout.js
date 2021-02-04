@@ -29,7 +29,6 @@ class Layout extends Component {
 				icon: "fab fa-github"
 			}
 		]
-		this.selectedComics = []
     }
 
     state = {
@@ -37,7 +36,8 @@ class Layout extends Component {
 		comicDetail: null,
 		isLoading: false,
 		isModalOpen: false,
-		isLoadingModal: true
+		isLoadingModal: true,
+		selectedComics: []
 	}
 
     componentDidMount() {
@@ -111,16 +111,17 @@ class Layout extends Component {
 	
 	selectComicHandler = (comic) => {
 		const comicId = comic.id
-		
-		let index = this.selectedComics.findIndex(el => el.id === comicId)		
+		const selectedComics = [...this.state.selectedComics]
+		let index = selectedComics.findIndex(el => el.id === comicId)		
 		if(index == -1) {
-			this.selectedComics.push(comic)
+			selectedComics.push(comic)
 		}
 		else {
-			this.selectedComics.splice(index, 1)
+			selectedComics.splice(index, 1)
 		}
 
-		console.log("SELECTED", this.selectedComics)
+		this.setState({ selectedComics: selectedComics })
+		console.log("SELECTED", selectedComics)
 	}
     
     render() {
@@ -132,6 +133,7 @@ class Layout extends Component {
 					closed={ this.closeModalHandler.bind(this) }
 					comic={ this.state.comicDetail }
 					loading={ this.state.isLoadingModal }
+					selectedComics={ this.state.selectedComics }
 				/>
                 <Header />
 				
@@ -142,7 +144,7 @@ class Layout extends Component {
 					/>
 
 					<ProjectContext.Provider value={{
-						selectedComics: this.selectedComics,
+						selectedComics: this.state.selectedComics,
 						selectHandler: this.selectComicHandler.bind(this)
 					}}>
 						<CardList 

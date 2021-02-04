@@ -16,9 +16,8 @@ class Modal extends Component {
     }
 
     renderModalBody = () => {
-        console.log("@@@", parseComicDetail(this.props.comic))
-        console.log(this.props)
-
+        //console.log("@@@", parseComicDetail(this.props.comic))
+        
         if(this.props.loading) {
             return (
                 <Loader show />
@@ -29,6 +28,7 @@ class Modal extends Component {
                 <Alert type="Danger">Ops! Something went wrong. Please try again soon.</Alert>
             )
         }
+
         return (
             <div className={ ModalClass.Detail }>
                 <div className={ ModalClass.Thumbnail }>
@@ -56,8 +56,16 @@ class Modal extends Component {
             containerClasses.push(ModalClass.Animation)
         }     
         
+        let buttonLabel = "Selecionar"
         if(this.props.comic) {
             title = this.props.comic.title
+        
+            const comicId = this.props.comic.id		
+            let index = this.props.selectedComics.findIndex(el => el.id === comicId)		
+            
+            if(index >= 0) {
+                buttonLabel = 'Remover'
+            }
         }
 
         return (
@@ -77,7 +85,7 @@ class Modal extends Component {
                             Fechar
                         </Button>
                         <Button onClick={ this.props.selected.bind(this, this.props.comic) }>
-                            Selecionar
+                            { buttonLabel }
                         </Button>
                     </div>
                 </div>

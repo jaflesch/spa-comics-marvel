@@ -25,7 +25,14 @@ const ComicCard = (props) => {
     }
 
     const thumbnail = `${props.thumbnail.path}.${props.thumbnail.extension}`
-    
+
+    let isInputChecked = false
+    const comicId = props.id
+    let index = projectContext.selectedComics.findIndex(el => el.id === comicId)		
+    if(index >= 0) {
+        isInputChecked = true
+    }
+
     return (
         <div className={ ComicCardCSS.Card } 
             title={ props.title }
@@ -41,7 +48,9 @@ const ComicCard = (props) => {
                 </div>
             </div>
             <h3 className={ ComicCardCSS.Title } title={ props.title }>{ props.title }</h3>
-            <input type="checkbox" onClick={ projectContext.selectHandler.bind(this, props) } />
+            
+            <input type="checkbox" onChange={ projectContext.selectHandler.bind(this, props) } checked={ isInputChecked }/>
+            
             <Button onClick={ props.showMore }>Ver mais</Button>
         </div>
     )
