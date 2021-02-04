@@ -1,7 +1,12 @@
 import ComicCardCSS from './ComicCard.module.scss'
-import Button from '../UI/Button/Button'
 
-const comicCard = (props) => {
+import { useContext } from 'react'
+import Button from '../UI/Button/Button'
+import ProjectContext from '../../context/Project'
+
+const ComicCard = (props) => {
+    const projectContext = useContext(ProjectContext)
+
     const onMouseOutHandler = (event) => {
         const nodeList = document.querySelectorAll(`.${ComicCardCSS.Fog}`)
         
@@ -20,7 +25,7 @@ const comicCard = (props) => {
     }
 
     const thumbnail = `${props.thumbnail.path}.${props.thumbnail.extension}`
-
+    
     return (
         <div className={ ComicCardCSS.Card } 
             title={ props.title }
@@ -36,10 +41,10 @@ const comicCard = (props) => {
                 </div>
             </div>
             <h3 className={ ComicCardCSS.Title } title={ props.title }>{ props.title }</h3>
-
+            <input type="checkbox" onClick={ projectContext.selectHandler.bind(this, props) } />
             <Button onClick={ props.showMore }>Ver mais</Button>
         </div>
     )
 }
 
-export default comicCard
+export default ComicCard

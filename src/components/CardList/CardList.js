@@ -28,6 +28,7 @@ const cardList = (props) => {
         comics = props.comics.map((comic) => {
             return <ComicCard
                 key={ comic.id }
+                id={ comic.id }
                 title={ comic.title }
                 pageCount={ comic.pageCount }
                 thumbnail={ comic.thumbnail }

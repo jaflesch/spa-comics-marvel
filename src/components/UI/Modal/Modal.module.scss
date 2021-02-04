@@ -1,8 +1,9 @@
 /* Container */
+$transition: all 0.2s ease-in-out;
 .Container {
     position: fixed;
     top: -25%;
-    width: 720px;
+    width: 75%;
     left: 50%;
     background: #fff;
     border-radius: 2px;
@@ -53,6 +54,7 @@
 }
 .Title {
     flex-grow: 3;
+    font-size: 1.1rem;
     color: #333;
     margin: 0;
 }
@@ -68,16 +70,37 @@
     height: 28px;
     border-radius: 50%;
     border: 2px solid #fff;
+    transition: $transition;
     cursor: pointer;
     
     &:hover, &:focus {
         background: #fff;
         color: #f0141e;
+        transition: $transition;
     }
 }
 
 /* Body */
-.Body { padding: 15px; }
+.Body { 
+    max-height: calc(100vh - 209px);
+    padding: 0 15px 15px; 
+    overflow-y: auto;
+
+    .Detail {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .Thumbnail {
+        img {
+            max-height: 480px;
+        }
+    }
+
+    .Text {
+        padding-left: 30px;
+    }
+}
 .Cancel {
     background: #fff;
     border: 0;
