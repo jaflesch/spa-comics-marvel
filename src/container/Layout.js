@@ -8,6 +8,7 @@ import CardList from '../components/CardList/CardList'
 import Modal from '../components/UI/Modal/Modal'
 import SocialMediaList from '../components/UI/SocialMediaList/SocialMediaList'
 import Project from '../utils/Project'
+import ProjectContext from '../context/Project'
 import Mailer from '../utils/Mailer'
 import LayoutCSS from './Layout.module.css'
 
@@ -28,6 +29,7 @@ class Layout extends Component {
 				icon: "fab fa-github"
 			}
 		]
+		this.selectedComics = []
     }
 
     state = {
@@ -105,13 +107,28 @@ class Layout extends Component {
 	
 	closeModalHandler = () => {
 		this.setState({ isModalOpen: false })
-    }
+	}
+	
+	selectComicHandler = (comic) => {
+		const comicId = comic.id
+		
+		let index = this.selectedComics.findIndex(el => el.id === comicId)		
+		if(index == -1) {
+			this.selectedComics.push(comic)
+		}
+		else {
+			this.selectedComics.splice(index, 1)
+		}
+
+		console.log("SELECTED", this.selectedComics)
+	}
     
     render() {
 		return (
 			<Fragment>
 				<Modal 
 					visible={ this.state.isModalOpen }
+					selected={ this.selectComicHandler.bind(this) }
 					closed={ this.closeModalHandler.bind(this) }
 					comic={ this.state.comicDetail }
 					loading={ this.state.isLoadingModal }
@@ -124,11 +141,16 @@ class Layout extends Component {
 						submited={ this.searchComicsHandler }
 					/>
 
-					<CardList 
-						comics={ this.state.comics } 
-						clickedComic={ this.showMoreHandler }
-						loading={ this.state.isLoading }
-					/>
+					<ProjectContext.Provider value={{
+						selectedComics: this.selectedComics,
+						selectHandler: this.selectComicHandler.bind(this)
+					}}>
+						<CardList 
+							comics={ this.state.comics } 
+							clickedComic={ this.showMoreHandler }
+							loading={ this.state.isLoading }
+						/>						
+					</ProjectContext.Provider>
 				</MainContent>
 
                 <Footer>

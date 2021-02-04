@@ -1,16 +1,20 @@
 import HeaderCSS from './Header.module.css'
 import Logo from '../UI/Logo/Logo'
-import Project from '../../utils/Project'
+import ProjectContext from '../../context/Project'
+import React, { useContext } from 'react'
 
-const header = () => {
+const Header = () => {
+    const projectContext = useContext(ProjectContext)
+    console.log(projectContext)
+
     return (
         <header className={ HeaderCSS.Container }>
             <Logo classes={ HeaderCSS.Logo } />
             <div className={ HeaderCSS.Challenge }>
-                <h1 className={ HeaderCSS.ChallengeTitle }>{ Project.title }</h1>
+                <h1 className={ HeaderCSS.ChallengeTitle }>{ projectContext.title }</h1>
             </div>
         </header>
     )
 }
 
-export default header
+export default Header
