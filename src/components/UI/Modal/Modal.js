@@ -35,7 +35,7 @@ class Modal extends Component {
             const listaLinks = comic.urls.map((url) => {
                 const type = url.type === "detail" ? "Detalhes" : "Comprar"
                 return (
-                    <a href={ url.url } target="_blank" rel="norefferer" className={ ModalClass.URLButton }>{ type }</a>
+                    <a key={url.url} href={ url.url } target="_blank" rel="norefferer" className={ ModalClass.URLButton }>{ type }</a>
                 )
             })
 

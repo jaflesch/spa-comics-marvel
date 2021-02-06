@@ -1,0 +1,27 @@
+$transition: all 0.2s ease-in-out;
+.Button {
+    $size: 54px;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    background: #f0141e;
+    color: #fff;
+    width: $size;
+    height: $size;
+    font-size: 1.25rem;
+    line-height: $size;
+    text-align: center;
+    padding: 0;
+    display: block;
+    border: 0;
+    border-radius: 50%;
+    z-index: 2;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(#000, .4);
+    transition: $transition;
+
+    &:hover {
+        box-shadow: 0 0 12px rgba(#000, .75);
+        transition: $transition;
+    }
+}
