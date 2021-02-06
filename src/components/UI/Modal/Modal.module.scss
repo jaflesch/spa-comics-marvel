@@ -98,9 +98,52 @@ $transition: all 0.2s ease-in-out;
     }
 
     .Text {
-        padding-left: 30px;
+        padding: {
+            left: 30px;
+            right: 15px;
+        }
+        color: #757575;
+        width: 100%;
+    }
+
+    p { margin: 0 0 15px; }
+
+    .ComicDescription {
+        font-size: 1rem;
+        color: #757575;
+        text-align: justify;
+        margin-bottom: 30px;
+    }
+    .ComicPrice {
+        font-size: 1.8rem;
+        color: #575757;
+        font-weight: bold;
+    }
+
+    .DigitalIssue {
+        display: inline-block;
+        font-size: 0.9rem;
+        color: #ee1c25;
+        text-decoration: none;
+        padding: 2px 4px;
+        margin-bottom: 15px;
+        border: 1px solid #ee1c25;
+        border-radius: 2px;
+        transition: $transition;
+        
+        &:hover {
+            background: #ee1c25;
+            color: #fff;
+            transition: $transition;
+        }
     }
 }
+.ComicTitle {
+    font-size: 1.2rem;
+    color: #000;
+    margin: 0 0 15px;
+}
+
 .Cancel {
     background: #fff;
     border: 0;
@@ -112,6 +155,42 @@ $transition: all 0.2s ease-in-out;
         box-shadow: none;
         background: #fff;
     }
+}
+
+.URLArea {
+    padding-top: 10px;
+    margin: 30px 0 0;
+    border-top: 1px dotted #9e9e9e;
+}
+.URLButton {
+    display: inline-block;
+    background: #fff;
+    font: {
+        weight: 700;
+        size: .75rem;
+    }
+    text: {
+        align: center;
+        transform: uppercase;
+        decoration: none;
+    }
+    color: #000;
+    letter-spacing: 1px;
+    padding: 8px 24px;
+    border: 0;
+    box-shadow: inset 0 0 0 2px #000;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+
+    &:hover {
+        background: #e62429;
+        color: #fff;
+        box-shadow: inset 0 0 0 2px #e62429;
+        transition: all 0.2s ease-in-out;
+    }
+
+    + .URLButton { margin-left: 5px; }
 }
 
 /* Footer */

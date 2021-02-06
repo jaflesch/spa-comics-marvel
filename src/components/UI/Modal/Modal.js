@@ -9,6 +9,7 @@ import parseComicDetail from '../../../utils/Utils'
 class Modal extends Component {
     constructor(props) {
         super(props)
+        this.readMarvelURL = 'https://read.marvel.com/#/book'
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -16,7 +17,7 @@ class Modal extends Component {
     }
 
     renderModalBody = () => {
-        //console.log("@@@", parseComicDetail(this.props.comic))
+        console.log("@@@", parseComicDetail(this.props.comic))
         
         if(this.props.loading) {
             return (
@@ -28,25 +29,48 @@ class Modal extends Component {
                 <Alert type="Danger">Ops! Something went wrong. Please try again soon.</Alert>
             )
         }
+        else {
+            const comic = parseComicDetail(this.props.comic)
 
-        return (
-            <div className={ ModalClass.Detail }>
-                <div className={ ModalClass.Thumbnail }>
-                {   this.props.comic && this.props.comic.thumbnail ? (
-                        <img src={this.props.comic.thumbnail.path + '.' + this.props.comic.thumbnail.extension } />
-                    ) : null
-                }
+            const listaLinks = comic.urls.map((url) => {
+                const type = url.type === "detail" ? "Detalhes" : "Comprar"
+                return (
+                    <a href={ url.url } target="_blank" rel="norefferer" className={ ModalClass.URLButton }>{ type }</a>
+                )
+            })
+
+            let digitalId = null
+            if(comic.digitalId > 0) {
+                digitalId = (
+                    <a href={`${this.readMarvelURL}/${comic.digitalId}`} className={ ModalClass.DigitalIssue } target="_blank" rel="norefferer">
+                        Disponível online
+                    </a>
+                )
+            }
+
+            return (
+                <div className={ ModalClass.Detail }>
+                    <div className={ ModalClass.Thumbnail }>
+                        <img src={ comic.thumbnail } />
+                    </div>
+                    <div className={ ModalClass.Text }>
+                        <h3 className={ ModalClass.ComicTitle }>{  comic.title }</h3>
+                        <p>{digitalId}</p>
+                        <p>Publicado em { comic.onSaleDate }</p>
+                        <p>{ comic.format } / { comic.pageCount } páginas </p>
+
+                        <p className={ ModalClass.ComicDescription }>{  comic.description ?  comic.description : 'Nenhuma descrição fornecida' }</p>
+                        <p className={ ModalClass.ComicPrice }>{ comic.price }</p>
+    
+
+                        <div className={ ModalClass.URLArea }>
+                            { listaLinks }
+                        </div>
+                    </div>
                 </div>
-                <div className={ ModalClass.Text }>
-                    <h3>formato: { this.props.comic ? this.props.comic.format : null }</h3>
-                    <h3>${ this.props.comic ? this.props.comic.prices[0].price : null }</h3>
-                    <h3>pg{ this.props.comic ? this.props.comic.pageCount : null }</h3>
-                    <h3>{ this.props.comic && this.props.comic.description ? this.props.comic.description : 'Nenhuma descrição fornecida' }</h3>
-                    <h3>{ this.props.comic && this.props.comic.urls ? (<a href={this.props.comic.urls[0].url} target="_blank">Detalhe</a>) : null }</h3>
-                    <h3>{ this.props.comic && this.props.comic.urls.length > 1 ? (<a href={this.props.comic.urls[1].url} target="_blank">Comprar</a>) : null }</h3>
-                </div>
-            </div>
-        )
+            )
+        }
+
     }
     
     render() {
