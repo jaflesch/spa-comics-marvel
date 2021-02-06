@@ -2,6 +2,7 @@ import ComicCardCSS from './ComicCard.module.scss'
 
 import { useContext } from 'react'
 import Button from '../UI/Button/Button'
+import Checkbox from '../UI/Checkbox/Checkbox'
 import ProjectContext from '../../context/Project'
 
 const ComicCard = (props) => {
@@ -47,10 +48,12 @@ const ComicCard = (props) => {
                     </span>
                 </div>
             </div>
+            <Checkbox 
+                className={ ComicCardCSS.Checkbox } 
+                changed={ projectContext.selectHandler.bind(this, props) } 
+                checked={ isInputChecked }
+            />
             <h3 className={ ComicCardCSS.Title } title={ props.title }>{ props.title }</h3>
-            
-            <input type="checkbox" onChange={ projectContext.selectHandler.bind(this, props) } checked={ isInputChecked }/>
-            
             <Button onClick={ props.showMore }>Ver mais</Button>
         </div>
     )
