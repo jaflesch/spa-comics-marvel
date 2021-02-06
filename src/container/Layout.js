@@ -113,7 +113,7 @@ class Layout extends Component {
 		const comicId = comic.id
 		const selectedComics = [...this.state.selectedComics]
 		let index = selectedComics.findIndex(el => el.id === comicId)		
-		if(index == -1) {
+		if(index === -1) {
 			selectedComics.push(comic)
 		}
 		else {
