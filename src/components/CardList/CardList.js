@@ -1,4 +1,4 @@
-import CardListCSS from './CardList.module.css'
+import CardListCSS from './CardList.module.scss'
 import ComicCard from '../ComicCard/ComicCard'
 import Loader from '../UI/Loader/Loader'
 

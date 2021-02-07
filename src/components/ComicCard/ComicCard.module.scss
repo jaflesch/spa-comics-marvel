@@ -1,8 +1,11 @@
+@import '../../sass/Bootstrap';
+
+$margin-offset: 30px;
 .Card {
-    width: calc(20% - 30px);
+    width: calc(20% - #{$margin-offset});
     text-align: center;
     padding: 15px;
-    margin: 0 15px 30px;
+    margin: 0 ($margin-offset / 2) 30px;
     border-radius: 4px;
     box-shadow: 0 0 7px rgba(0,0,0,.15);
     box-sizing: border-box;
@@ -19,9 +22,7 @@
         }
     }
     
-    &.Fog {
-        opacity: .5;
-    }
+    &.Fog { opacity: .5; }
 
     .Checkbox {
         position: absolute;
@@ -56,4 +57,17 @@
     bottom: 10px;
     right: 10px;
     color: #fff;
+}
+
+@media(max-width: $breakpoint-md) {
+    .Card { width: calc(25% - #{$margin-offset}); }
+}
+@media(max-width: $breakpoint-sm) {
+    .Card { width: calc(33.3333% - #{$margin-offset}); }
+}
+@media(max-width: $breakpoint-xs) {
+    .Card { width: calc(50% - #{$margin-offset}); }
+}
+@media(max-width: $breakpoint-xxs) {
+    .Card { width: calc(100% - #{$margin-offset}); }
 }

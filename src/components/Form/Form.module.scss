@@ -1,3 +1,5 @@
+@import '../../sass/Bootstrap';
+
 .Container {
     $transition: all 0.2s ease-in-out;
     position: relative;
@@ -12,7 +14,7 @@
         font-size: 1.1rem;
         font-weight: bold;
         text-transform: uppercase;
-        padding: 4px 8px;
+        padding: 4px 40px 4px 8px;
         border: 0;
         border: {
             bottom: 2px solid #202020;
@@ -30,16 +32,11 @@
             ~ button { color: #f0141e; }
         }
 
-        /* Chrome, Firefox, Opera, Safari 10.1+ */
         &::placeholder { 
             color: #ccc;
             opacity: 1;
-        }
-          
-        /* Internet Explorer 10-11 */
-        &:-ms-input-placeholder { color: #ccc; }
-          
-        /* Microsoft Edge */
+        }          
+        &:-ms-input-placeholder { color: #ccc; }          
         &::-ms-input-placeholder { color: #ccc; }
     }
 
@@ -61,5 +58,14 @@
     button:hover {
         color: #f0141e;
         transition: $transition;
+    }
+}
+
+@media(max-width: $breakpoint-xs) {
+    .Container { 
+        width: auto; 
+        padding: 15px;
+    
+        button { right: 15px; }
     }
 }
