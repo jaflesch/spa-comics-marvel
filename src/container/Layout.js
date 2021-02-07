@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import Project from '../utils/Project'
 import ProjectContext from '../context/Project'
 import MarvelAPI from '../services/MarvelApi'
-
-import Project from '../utils/Project'
 import Header from '../components/Header/Header'
 import MainContent from '../components/MainContent/MainContent'
 import Form from '../components/Form/Form'
@@ -10,7 +9,6 @@ import Footer from '../components/Footer/Footer'
 import CardList from '../components/CardList/CardList'
 import Modal from '../components/UI/Modal/Modal'
 import SocialMediaList from '../components/UI/SocialMediaList/SocialMediaList'
-import LayoutCSS from './Layout.module.css'
 import SendEmailButton from '../components/SendEmailButton/SendEmailButton'
 
 class Layout extends Component {
@@ -43,7 +41,7 @@ class Layout extends Component {
 
     componentDidMount() {
 		this.setState({isLoading: true })
-		this.fetchComics('Marv')
+		this.fetchComics()
     }
     
     // Fetch data
@@ -72,19 +70,6 @@ class Layout extends Component {
 				comicDetail: response.data.results[0],
 				isLoadingModal: false
 			})
-
-			/*
-			const mailerInstance = new Mailer()
-			mailerInstance.setParams({
-				subject: response.data.results[0].title,
-				message: `<img src="${response.data.results[0].thumbnail.path}.${response.data.results[0].thumbnail.extension}" />`,
-				sendTo: 'jean.flesch93@gmail.com'
-			})
-
-			mailerInstance.send((res) => {
-				console.log(res)
-			})
-			*/
 		})
 	}
 

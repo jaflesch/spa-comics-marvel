@@ -7,7 +7,7 @@ const socialMediaLink = (props) => {
     }
     
     return (
-        <a href={ props.to } target={props.external ? '_blank' : ''} rel={ props.external ? 'noreferrer' : ''}>
+        <a href={ props.to } target={props.external ? '_blank' : ''} rel='noreferrer'>
             { iconClass } { props.children }
         </a>
     )

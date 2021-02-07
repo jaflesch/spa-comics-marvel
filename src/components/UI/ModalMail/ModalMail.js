@@ -7,27 +7,11 @@ import ModalClass from './ModalMail.module.scss'
 import { getThumbnailPath, isValidEmail } from '../../../utils/Utils'
 
 class ModalMail extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     shouldComponentUpdate(nextProps, nextState) {
         return true
     }
 
-    // onChangeSendToHandler = (event) => {
-    //     console.log(event)
-    //     this.props.sendToInput = event.target.value
-    // }
-
     renderModalBody = () => {
-        let isInputChecked = false
-        const comicId = this.props.id
-        let index = this.props.selectedComics.findIndex(el => el.id === comicId)		
-        if(index >= 0) {
-            isInputChecked = true
-        }
-        
         if(this.props.loading) {
             return (
                 <Loader show />
@@ -70,6 +54,7 @@ class ModalMail extends Component {
                             onChange={ this.props.sendToChanged.bind(this) }
                             value={ this.props.sendTo }
                         />
+                        <i className="fas fa-envelope" />
                     </div>
                 )
             }
@@ -78,18 +63,16 @@ class ModalMail extends Component {
                 <div className={ ModalClass.Detail }>
                     <ul className={ ModalClass.List }>
                         { sendToInput }
-
                         { selectedComicsList }
                     </ul>
                 </div>
             )
         }
-
     }
     
     render() {
         // Handle modal show animation
-        let containerClasses = [ModalClass.Container], title
+        let containerClasses = [ModalClass.Container]
         if(this.props.visible) {
             containerClasses.push(ModalClass.Animation)
         }     

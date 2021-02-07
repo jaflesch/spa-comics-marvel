@@ -5,8 +5,7 @@ import React, { useContext } from 'react'
 
 const Header = () => {
     const projectContext = useContext(ProjectContext)
-    console.log(projectContext)
-
+    
     return (
         <header className={ HeaderCSS.Container }>
             <Logo classes={ HeaderCSS.Logo } />

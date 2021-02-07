@@ -33,14 +33,14 @@ class Modal extends Component {
             const listaLinks = comic.urls.map((url) => {
                 const type = url.type === "detail" ? "Detalhes" : "Comprar"
                 return (
-                    <a key={url.url} href={ url.url } target="_blank" rel="norefferer" className={ ModalClass.URLButton }>{ type }</a>
+                    <a key={url.url} href={ url.url } target="_blank" rel="noreferrer" className={ ModalClass.URLButton }>{ type }</a>
                 )
             })
 
             let digitalId = null
             if(comic.digitalId > 0) {
                 digitalId = (
-                    <a href={`${this.readMarvelURL}/${comic.digitalId}`} className={ ModalClass.DigitalIssue } target="_blank" rel="norefferer">
+                    <a href={`${this.readMarvelURL}/${comic.digitalId}`} className={ ModalClass.DigitalIssue } target="_blank" rel="noreferrer">
                         Disponível online
                     </a>
                 )
@@ -49,7 +49,7 @@ class Modal extends Component {
             return (
                 <div className={ ModalClass.Detail }>
                     <div className={ ModalClass.Thumbnail }>
-                        <img src={ comic.thumbnail } />
+                        <img src={ comic.thumbnail } alt={ comic.title } />
                     </div>
                     <div className={ ModalClass.Text }>
                         <h3 className={ ModalClass.ComicTitle }>{  comic.title }</h3>
@@ -68,20 +68,17 @@ class Modal extends Component {
                 </div>
             )
         }
-
     }
     
     render() {
         // Handle modal show animation
-        let containerClasses = [ModalClass.Container], title
+        let containerClasses = [ModalClass.Container]
         if(this.props.visible) {
             containerClasses.push(ModalClass.Animation)
         }     
         
         let buttonLabel = "Selecionar"
         if(this.props.comic) {
-            title = this.props.comic.title
-        
             const comicId = this.props.comic.id		
             let index = this.props.selectedComics.findIndex(el => el.id === comicId)		
             

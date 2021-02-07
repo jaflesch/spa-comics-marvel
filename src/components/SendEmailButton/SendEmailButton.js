@@ -7,10 +7,6 @@ import Backdrop from './../UI/Backdrop/Backdrop'
 import { formatHTMLMailTemplate } from './../../utils/Utils'
 
 class SendEmailButton extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     state = {
         isModalOpen: false,
         isLoadingModal: false,
