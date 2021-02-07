@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react'
+import ProjectContext from '../context/Project'
 import MarvelAPI from '../services/MarvelApi'
+
+import Project from '../utils/Project'
 import Header from '../components/Header/Header'
 import MainContent from '../components/MainContent/MainContent'
 import Form from '../components/Form/Form'
@@ -7,10 +10,8 @@ import Footer from '../components/Footer/Footer'
 import CardList from '../components/CardList/CardList'
 import Modal from '../components/UI/Modal/Modal'
 import SocialMediaList from '../components/UI/SocialMediaList/SocialMediaList'
-import Project from '../utils/Project'
-import ProjectContext from '../context/Project'
-import Mailer from '../utils/Mailer'
 import LayoutCSS from './Layout.module.css'
+import SendEmailButton from '../components/SendEmailButton/SendEmailButton'
 
 class Layout extends Component {
     constructor(props) {
@@ -121,7 +122,16 @@ class Layout extends Component {
 		}
 
 		this.setState({ selectedComics: selectedComics })
-		console.log("SELECTED", selectedComics)
+	}
+
+	removeComicHandler = (comicId) => {
+		const selectedComics = [...this.state.selectedComics]
+		let index = selectedComics.findIndex(el => el.id === comicId)		
+		if(index >= 0) {
+			selectedComics.splice(index, 1)
+		}
+
+		this.setState({ selectedComics: selectedComics })
 	}
     
     render() {
@@ -152,7 +162,15 @@ class Layout extends Component {
 							clickedComic={ this.showMoreHandler }
 							loading={ this.state.isLoading }
 						/>						
+
+						<SendEmailButton 
+							visible={ this.state.isModalOpen }
+							closed={ this.closeModalHandler.bind(this) }
+							removed={ this.removeComicHandler.bind(this) }
+							selectedComics={ this.state.selectedComics }
+						/>
 					</ProjectContext.Provider>
+					
 				</MainContent>
 
                 <Footer>
