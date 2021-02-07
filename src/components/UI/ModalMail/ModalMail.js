@@ -3,10 +3,8 @@ import Backdrop from '../Backdrop/Backdrop'
 import Loader from './../Loader/Loader'
 import Alert from './../Alert/Alert'
 import Button from './../Button/Button'
-import Checkbox from './../Checkbox/Checkbox'
 import ModalClass from './ModalMail.module.scss'
-import parseComicDetail from '../../../utils/Utils'
-import { useContext } from 'react'
+import { getThumbnailPath, isValidEmail } from '../../../utils/Utils'
 
 class ModalMail extends Component {
     constructor(props) {
@@ -17,17 +15,9 @@ class ModalMail extends Component {
         return true
     }
 
-    // onChangeHandler = (comic) => {
-    //     const comicId = comic.id
-    //     const selectedComics = [...this.props.selectedComics]
-    //     console.log(this.props.selectedComics, selectedComics)
-	// 	let index = selectedComics.findIndex(el => el.id === comicId)		
-	// 	if(index === -1) {
-	// 		selectedComics.push(comic)
-	// 	}
-	// 	else {
-	// 		selectedComics.splice(index, 1)
-	// 	}
+    // onChangeSendToHandler = (event) => {
+    //     console.log(event)
+    //     this.props.sendToInput = event.target.value
     // }
 
     renderModalBody = () => {
@@ -50,12 +40,14 @@ class ModalMail extends Component {
         }
         else {
             // Mount comic list content
+            let sendToInput = null
             let selectedComicsList = (
                 <li className={ ModalClass.ListDefault }>Nenhum quadrinho selecionado</li>
             )
+            
             if(this.props.selectedComics.length > 0) {
                 selectedComicsList = this.props.selectedComics.map((comic) => {
-                    const thumbnail = `${comic.thumbnail.path}.${comic.thumbnail.extension }`
+                    const thumbnail = getThumbnailPath(comic.thumbnail)
 
                     return (
                         <li key={ comic.id }>
@@ -64,15 +56,29 @@ class ModalMail extends Component {
                                 { comic.title }
                             </h4>
                             <Button classes={ ModalClass.RemoveComic } onClick={ this.props.removed.bind(this, comic.id) }>Remover</Button>
-
                         </li>
                     )
                 })
+
+                sendToInput = (
+                    <div className={ ModalClass.Form }>
+                        <label>Enviar lista para</label>
+                        <input 
+                            type="email" 
+                            className={ ModalClass.SendToInput } 
+                            placeholder="SEU@EMAIL.COM" 
+                            onChange={ this.props.sendToChanged.bind(this) }
+                            value={ this.props.sendTo }
+                        />
+                    </div>
+                )
             }
 
             return (
                 <div className={ ModalClass.Detail }>
                     <ul className={ ModalClass.List }>
+                        { sendToInput }
+
                         { selectedComicsList }
                     </ul>
                 </div>
@@ -89,9 +95,9 @@ class ModalMail extends Component {
         }     
         
         let sendEmailButton = null 
-        if(this.props.selectedComics.length > 0) {
+        if(this.props.selectedComics.length > 0 && isValidEmail(this.props.sendTo)) {
             sendEmailButton = (
-                <Button>
+                <Button onClick={ this.props.submited }>
                     Enviar email
                 </Button>
             )

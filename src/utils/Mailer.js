@@ -2,28 +2,28 @@ import emailjs from 'emailjs-com'
 import Project from './Project'
 
 class Mailer {
-    constructor(params) {
+    constructor(templateParams) {
         this.serviceId = Project.emailJs.serviceId
         this.templateId = Project.emailJs.templateId
         this.userId = Project.emailJs.userId
         this.replyTo = Project.emailJs.replyTo
-        this.templateParams = params
+        this.templateParams = templateParams
     }
 
-    setParams(params) {
+    setParams(templateParams) {
         /*
             subject: ..
             message: ..
             sendTo: ..
         */
-        this.params = params
+        this.templateParams = templateParams
     }
 
     send(callbackSuccess, callbackError) {
         return emailjs.send(
             this.serviceId, 
             this.templateId, 
-            this.params, 
+            this.templateParams, 
             this.userId
         )
         .then((response) => {
