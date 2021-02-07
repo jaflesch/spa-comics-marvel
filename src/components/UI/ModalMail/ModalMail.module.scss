@@ -1,0 +1,177 @@
+/* Container */
+$transition: all 0.2s ease-in-out;
+.Container {
+    position: fixed;
+    top: -25%;
+    width: 75%;
+    left: 50%;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    z-index: 0;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    
+    &.Animation {
+        top: 30px;
+        opacity: 1;
+        z-index: 999999;
+    }
+    
+    &.Large {
+        width: 90%;
+        left: 5%;
+        transform: none;
+    }
+    
+    &.Small { width: 480px; }
+}
+
+@media(max-width: 767px) {
+    .Container, .Container.Large { 
+        width: calc(100% - 30px);
+        left: 15px;
+        transform: none;
+    }
+    .Container.Small {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+@media(max-width: 510px) {
+    .Container.Small { 
+        width: calc(100% - 30px);
+        left: 15px;
+        transform: none;
+    }
+}
+
+/* Header */
+.Header {
+    padding: 15px;
+    display: flex;
+}
+.Title {
+    flex-grow: 3;
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+}
+.CloseButton {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    line-height: 26px;
+    font-size: 28px;
+    text-align: center;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    transition: $transition;
+    cursor: pointer;
+    
+    &:hover, &:focus {
+        background: #fff;
+        color: #f0141e;
+        transition: $transition;
+    }
+}
+
+/* Body */
+.Body { 
+    max-height: calc(100vh - 209px);
+    padding: 0 15px 15px; 
+    overflow-y: auto;
+
+    .List {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            position: relative;
+            padding: 5px;
+            border: 1px solid #e1e1e1;
+            border-radius: 2px;
+            
+            +li { margin-top: 5px; }
+
+            &.ListDefault {
+                border: none;
+                padding: 0;
+                margin: 15px 0;
+                text-align: center;
+            }
+        }
+    }
+    .Thumbnail {
+        max-height: 100px;
+        margin-right: 15px;
+    }
+
+    .Text {
+        padding: {
+            left: 30px;
+            right: 15px;
+        }
+        color: #757575;
+        width: 100%;
+    }
+
+    .Checkbox {
+        position: static;
+
+        span {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}
+.ComicTitle {
+    font-size: 1rem;
+    color: #202020;
+    margin: 0;
+    flex-grow: 100;
+}
+
+.Cancel {
+    background: #fff;
+    border: 0;
+    box-shadow: none;
+    color: #202020;
+    
+    &:hover { 
+        color: #000; 
+        box-shadow: none;
+        background: #fff;
+    }
+}
+
+.RemoveComic {
+    background: #fff;
+    border: 1px solid #f0141e;
+    box-shadow: none;
+    color: #f0141e;
+    padding: 4px 8px;
+
+    &:hover { 
+        color: #f0141e; 
+        box-shadow: none;
+        border: 1px solid #f0141e;
+        background: #fff;
+    }
+}
+
+/* Footer */
+.Footer {
+    display: flex;
+    padding: 15px;
+    justify-content: flex-end;
+    border-top: 1px solid #ddd;
+}
