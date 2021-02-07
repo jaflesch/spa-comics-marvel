@@ -1,4 +1,4 @@
-const formatDate = (datetime) => {
+export const formatDate = (datetime) => {
     const date = new Date(datetime)
     const day = date.getDate()
     const year = date.getFullYear()
@@ -46,7 +46,7 @@ const formatDate = (datetime) => {
     return `${month} ${day}, ${year}`
 }
 
-const parseComicDetail = (comic) => {
+export const parseComicDetail = (comic) => {
     if(comic) {
         let { description, diamondCode, digitalId, format, id, isbn, modified, pageCount, title, urls } = comic
         let creators    = (comic.creators) ? [...comic.creators.items] : []
@@ -77,4 +77,49 @@ const parseComicDetail = (comic) => {
     return null
 }
 
-export default parseComicDetail
+export const getThumbnailPath = (thumbnailObject) => {
+    if(thumbnailObject) {
+        return `${thumbnailObject.path}.${thumbnailObject.extension}` 
+    }
+
+    return ''
+}
+
+export const formatHTMLMailTemplate = (selectedComics) => {
+    const tableStyle = 'border-collapse: collapse; border: 1px solid #ccc;width:100%;'
+    let htmlTemplate = `
+        <table style="${tableStyle}" border="1">
+            <thead>
+                <th></th>
+                <th>Título</th>
+                <th>Formato</th>
+                <th>Descrição</th>
+            </thead>
+            <tbody>
+    `.trim()
+
+    for(let comic of selectedComics) {
+        const tdStyle = 'vertical-align:middle;padding: 10px;'
+        const thumbnail = getThumbnailPath(comic.thumbnail)
+
+        htmlTemplate += `
+            <tr>
+                <td style="${tdStyle}">
+                    <img src="${thumbnail}" style="max-height: 150px;" alt="${comic.title}" />
+                </td>
+                <td style="${tdStyle}">
+                    <strong>${comic.title}</strong>
+                </td>
+                <td style="${tdStyle}">${comic.format} / ${comic.pageCount} páginas</td>
+                <td style="${tdStyle}" width="30%">${comic.description ? comic.description : 'Nenhuma descrição fornecida'}</td>
+            </tr>
+        `.trim()
+    }
+
+    htmlTemplate += `
+            </tbody>
+        </table>
+    `.trim()
+
+    return htmlTemplate
+}

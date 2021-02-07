@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import Button from '../UI/Button/Button'
 import Checkbox from '../UI/Checkbox/Checkbox'
 import ProjectContext from '../../context/Project'
+import { getThumbnailPath } from '../../utils/Utils'
 
 const ComicCard = (props) => {
     const projectContext = useContext(ProjectContext)
@@ -25,10 +26,9 @@ const ComicCard = (props) => {
         event.target.classList.remove(ComicCardCSS.Fog)        
     }
 
-    const thumbnail = `${props.thumbnail.path}.${props.thumbnail.extension}`
-
-    let isInputChecked = false
     const comicId = props.id
+    const thumbnail = getThumbnailPath(props.thumbnail)
+    let isInputChecked = false
     let index = projectContext.selectedComics.findIndex(el => el.id === comicId)		
     if(index >= 0) {
         isInputChecked = true

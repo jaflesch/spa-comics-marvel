@@ -4,7 +4,7 @@ import Loader from './../Loader/Loader'
 import Alert from './../Alert/Alert'
 import Button from './../Button/Button'
 import ModalClass from './Modal.module.scss'
-import parseComicDetail from '../../../utils/Utils'
+import { parseComicDetail } from '../../../utils/Utils'
 
 class Modal extends Component {
     constructor(props) {
@@ -17,8 +17,6 @@ class Modal extends Component {
     }
 
     renderModalBody = () => {
-        console.log("@@@", parseComicDetail(this.props.comic))
-        
         if(this.props.loading) {
             return (
                 <Loader show />

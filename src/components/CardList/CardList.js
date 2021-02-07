@@ -31,6 +31,8 @@ const cardList = (props) => {
                 id={ comic.id }
                 title={ comic.title }
                 pageCount={ comic.pageCount }
+                format={ comic.format }
+                description= { comic.description }
                 thumbnail={ comic.thumbnail }
                 showMore={ props.clickedComic.bind(this, comic.id) }       
             />
