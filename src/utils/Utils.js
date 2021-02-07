@@ -123,3 +123,7 @@ export const formatHTMLMailTemplate = (selectedComics) => {
 
     return htmlTemplate
 }
+
+export const isValidEmail = (email) => {
+    return email.match(/\S+@\S+\.\S+/) !== null
+}
