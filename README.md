@@ -24,7 +24,11 @@ Todo o projeto foi desenvolvimento e homologado nos navegadores Google Chrome e 
 ## Montar o projeto localmente
 
 Clone este repositório e execute os seguinte comandos:
-```$ npm install```
-```$ npm start```
+```bash 
+$ npm install
+```
+```bash
+$ npm start
+```
 
 O Node.js instalará todas as configurações necessárias para a aplicação iniciar localmente em modo de desenvolvimento. Basta abrir o endereço [http://localhost:3000](http://localhost:3000) para visualizá-lo no navegador.
