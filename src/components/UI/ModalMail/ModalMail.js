@@ -17,9 +17,9 @@ class ModalMail extends Component {
                 <Loader show />
             )   
         }
-        else if(this.props.networkError) {
+        else if(this.props.selectedComics === -1) {
             return (
-                <Alert type="Danger">Ops! Something went wrong. Please try again soon.</Alert>
+                <Alert type="Danger">Ops! Ocorreu um erro ao processar sua requisição. Por favor, tente novamente.</Alert>
             )
         }
         else if(this.props.emailSent) {

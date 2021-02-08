@@ -57,9 +57,10 @@ class Layout extends Component {
 		.catch((err) => {
 			this.setState({
 				comics: -1,
+				selectedComics: -1,
 				isLoading: false
 			})
-		})
+		})	
 	}
 
 	fetchComicById = (id) => {
@@ -68,6 +69,12 @@ class Layout extends Component {
 		marvelAPIInstance.getComicById(id).then((response) => {
 			this.setState({
 				comicDetail: response.data.results[0],
+				isLoadingModal: false
+			})
+		})
+		.catch((err) => {
+			this.setState({
+				comicDetail: -1,
 				isLoadingModal: false
 			})
 		})

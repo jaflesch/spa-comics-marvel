@@ -8,7 +8,10 @@
     margin-top: 30px;
 }
 
-.Loader {
+.Feedback, .Loader {
     padding: 120px 0;
     margin: 0 auto;
+}
+.Feedback {
+    text-align: center;
 }

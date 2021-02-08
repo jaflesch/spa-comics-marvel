@@ -22,9 +22,9 @@ class Modal extends Component {
                 <Loader show />
             )   
         }
-        else if(this.props.networkError) {
+        else if(this.props.comic === -1) {
             return (
-                <Alert type="Danger">Ops! Something went wrong. Please try again soon.</Alert>
+                <Alert type="Danger">Ops! Ocorreu um erro ao processar sua requisição. Por favor, tente novamente.</Alert>
             )
         }
         else {
@@ -86,6 +86,14 @@ class Modal extends Component {
                 buttonLabel = 'Remover'
             }
         }
+        let buttonSelect = null 
+        if(this.props.comic !== -1) (
+            buttonSelect = (
+                <Button onClick={ this.props.selected.bind(this, this.props.comic) }>
+                    { buttonLabel }
+                </Button>
+            )
+        )
 
         return (
             <Fragment>
@@ -103,9 +111,7 @@ class Modal extends Component {
                         <Button classes={ ModalClass.Cancel } onClick={ this.props.closed }>
                             Fechar
                         </Button>
-                        <Button onClick={ this.props.selected.bind(this, this.props.comic) }>
-                            { buttonLabel }
-                        </Button>
+                        { buttonSelect }
                     </div>
                 </div>
             </Fragment>

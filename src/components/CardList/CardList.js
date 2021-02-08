@@ -1,9 +1,14 @@
 import CardListCSS from './CardList.module.scss'
 import ComicCard from '../ComicCard/ComicCard'
 import Loader from '../UI/Loader/Loader'
+import Alert from '../UI/Alert/Alert'
 
 const cardList = (props) => {
-    let comics = <p>No comics were found</p>
+    let comics = (
+        <div className={ CardListCSS.Feedback } >
+            <p>Nenhum resultado encontrado para a pesquisa realizada.</p>
+        </div>
+    )
 
     // Loading content
     if(props.loading) {
@@ -18,13 +23,13 @@ const cardList = (props) => {
     // Network error
     else if(props.comics === -1) {
         comics = (
-            <div className={ CardListCSS.Loader } >
-                <p style={{ textAlign: 'center', width: '100%' }}>Erro ao acessar API da Marvel. Por favor, tente novamente.</p>
+            <div className={ CardListCSS.Feedback } >
+                <Alert type="Danger">Erro ao acessar API da Marvel. Por favor, tente novamente</Alert>
             </div>
         )
     }
     // Render fetched content
-    else if(props.comics) {
+    else if(props.comics.length > 0) {
         comics = props.comics.map((comic) => {
             return <ComicCard
                 key={ comic.id }
@@ -38,6 +43,7 @@ const cardList = (props) => {
             />
         })
     }
+
     return (
         <div className={ CardListCSS.Grid }>{ comics }</div>
     )
