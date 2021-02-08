@@ -118,6 +118,10 @@ class Layout extends Component {
 
 		this.setState({ selectedComics: selectedComics })
 	}
+
+	clearComics = () => {
+		this.setState({ selectedComics: []})
+	}
     
     render() {
 		return (
@@ -153,6 +157,7 @@ class Layout extends Component {
 							closed={ this.closeModalHandler.bind(this) }
 							removed={ this.removeComicHandler.bind(this) }
 							selectedComics={ this.state.selectedComics }
+							cleared={ this.clearComics }
 						/>
 					</ProjectContext.Provider>
 					

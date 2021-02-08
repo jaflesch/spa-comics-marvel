@@ -22,6 +22,15 @@ class ModalMail extends Component {
                 <Alert type="Danger">Ops! Something went wrong. Please try again soon.</Alert>
             )
         }
+        else if(this.props.emailSent) {
+            return (
+                <div className={ ModalClass.Detail }>
+                    <ul className={ ModalClass.List }>
+                        <li className={ ModalClass.ListDefault }>E-mail enviado com sucesso</li>
+                    </ul>
+                </div>
+            )
+        }
         else {
             // Mount comic list content
             let sendToInput = null

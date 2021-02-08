@@ -15,7 +15,10 @@ class SendEmailButton extends Component {
     }
 
     clickHandler = () =>{
-        this.setState({ isModalOpen: true })
+        this.setState({ 
+            isModalOpen: true,
+            emailSent: false
+        })
     }
 
     closeModalHandler = () => {
@@ -23,6 +26,11 @@ class SendEmailButton extends Component {
     }
 
     onSubmitModal = () => {
+        this.setState({ 
+            isLoadingModal: true,
+            sendToInput: "" 
+        })
+
         // Enviar email
         const mailerInstance = new Mailer({
             subject: 'Sua lista de quadrinhos Marvel',
@@ -31,7 +39,11 @@ class SendEmailButton extends Component {
         })
 
         mailerInstance.send((res) => {
-            this.setState({ emailSent: true })
+            this.setState({ 
+                emailSent: true,
+                isLoadingModal: false
+            })
+            this.props.cleared()
         })
     }
 
@@ -56,6 +68,7 @@ class SendEmailButton extends Component {
                     submited={ this.onSubmitModal.bind(this) }
                     sendTo={ this.state.sendToInput }
                     sendToChanged={ this.onSendToChange.bind(this) }
+                    emailSent={ this.state.emailSent }
                 />
 
                 <button className={ SendEmailButtonCSS.Button } onClick={ this.clickHandler }>
