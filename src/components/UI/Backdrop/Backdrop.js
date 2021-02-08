@@ -1,4 +1,4 @@
-import backdropClass from './Backdrop.module.css'
+import backdropClass from './Backdrop.module.scss'
 
 const backdrop = (props) => {
     return (

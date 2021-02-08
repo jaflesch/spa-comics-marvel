@@ -1,5 +1,5 @@
-/* Container */
-$transition: all 0.2s ease-in-out;
+@import '../../../sass/Bootstrap';
+
 .Container {
     position: fixed;
     top: -25%;
@@ -17,33 +17,6 @@ $transition: all 0.2s ease-in-out;
         top: 30px;
         opacity: 1;
         z-index: 999999;
-    }
-    
-    &.Large {
-        width: 90%;
-        left: 5%;
-        transform: none;
-    }
-    
-    &.Small { width: 480px; }
-}
-
-@media(max-width: 767px) {
-    .Container, .Container.Large { 
-        width: calc(100% - 30px);
-        left: 15px;
-        transform: none;
-    }
-    .Container.Small {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-@media(max-width: 510px) {
-    .Container.Small { 
-        width: calc(100% - 30px);
-        left: 15px;
-        transform: none;
     }
 }
 
@@ -75,7 +48,7 @@ $transition: all 0.2s ease-in-out;
     
     &:hover, &:focus {
         background: #fff;
-        color: #f0141e;
+        color: $primary-color;
         transition: $transition;
     }
 
@@ -125,16 +98,16 @@ $transition: all 0.2s ease-in-out;
     .DigitalIssue {
         display: inline-block;
         font-size: 0.9rem;
-        color: #ee1c25;
+        color: $primary-color;
         text-decoration: none;
         padding: 2px 4px;
         margin-bottom: 15px;
-        border: 1px solid #ee1c25;
+        border: 1px solid $primary-color;
         border-radius: 2px;
         transition: $transition;
         
         &:hover {
-            background: #ee1c25;
+            background: $primary-color;
             color: #fff;
             transition: $transition;
         }
@@ -182,14 +155,14 @@ $transition: all 0.2s ease-in-out;
     border: 0;
     box-shadow: inset 0 0 0 2px #000;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: $transition;
 
 
     &:hover {
-        background: #e62429;
+        background: $primary-color;
         color: #fff;
-        box-shadow: inset 0 0 0 2px #e62429;
-        transition: all 0.2s ease-in-out;
+        box-shadow: inset 0 0 0 2px $primary-color;
+        transition: $transition;
     }
 
     + .URLButton { margin-left: 5px; }
@@ -201,4 +174,43 @@ $transition: all 0.2s ease-in-out;
     padding: 15px;
     justify-content: flex-end;
     border-top: 1px solid #ddd;
+}
+
+@media(max-width: $breakpoint-xs) {
+    .Container { 
+        width: calc(100% - 30px);
+        left: 15px;
+        transform: none;
+    }
+
+    .Body {
+        .Detail {
+            display: block;
+        }        
+        
+        .Thumbnail img { 
+            max-height: 240px;
+            display: block;
+            margin: 0 auto 15px;
+        }
+
+        .Text {
+            width: auto;
+            text-align: center;
+            padding: 0;
+        }
+
+        p { margin-bottom: 10px;}
+        
+        .ComicDescription { 
+            text-align: center;
+            margin: 20px 0; 
+        }
+    }
+
+    .URLArea { 
+        margin-top: 20px;
+        padding: 0;
+        border: 0; 
+    }
 }

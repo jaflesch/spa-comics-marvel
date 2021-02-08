@@ -61,8 +61,8 @@ class ModalMail extends Component {
 
             return (
                 <div className={ ModalClass.Detail }>
+                    { sendToInput }
                     <ul className={ ModalClass.List }>
-                        { sendToInput }
                         { selectedComicsList }
                     </ul>
                 </div>

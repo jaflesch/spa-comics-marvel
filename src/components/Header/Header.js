@@ -1,4 +1,4 @@
-import HeaderCSS from './Header.module.css'
+import HeaderCSS from './Header.module.scss'
 import Logo from '../UI/Logo/Logo'
 import ProjectContext from '../../context/Project'
 import React, { useContext } from 'react'

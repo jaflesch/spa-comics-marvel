@@ -1,4 +1,4 @@
-import ButtonCSS from './Button.module.css'
+import ButtonCSS from './Button.module.scss'
 
 const button = (props) => {
     let classes= [ButtonCSS.Style]

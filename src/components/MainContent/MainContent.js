@@ -1,4 +1,4 @@
-import MainContentCSS from './MainContent.module.css'
+import MainContentCSS from './MainContent.module.scss'
 
 const mainContent = props => {
     return (

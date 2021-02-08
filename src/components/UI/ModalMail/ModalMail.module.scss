@@ -1,5 +1,6 @@
+@import '../../../sass/Bootstrap';
+
 /* Container */
-$transition: all 0.2s ease-in-out;
 .Container {
     position: fixed;
     top: -25%;
@@ -28,7 +29,7 @@ $transition: all 0.2s ease-in-out;
     &.Small { width: 480px; }
 }
 
-@media(max-width: 767px) {
+@media(max-width: $breakpoint-xs) {
     .Container, .Container.Large { 
         width: calc(100% - 30px);
         left: 15px;
@@ -39,7 +40,7 @@ $transition: all 0.2s ease-in-out;
         transform: translateX(-50%);
     }
 }
-@media(max-width: 510px) {
+@media(max-width:  $breakpoint-xxs) {
     .Container.Small { 
         width: calc(100% - 30px);
         left: 15px;
@@ -75,7 +76,7 @@ $transition: all 0.2s ease-in-out;
     
     &:hover, &:focus {
         background: #fff;
-        color: #f0141e;
+        color: $primary-color;
         transition: $transition;
     }    
     &:focus { outline: none; }
@@ -136,7 +137,7 @@ $transition: all 0.2s ease-in-out;
 }
 .ComicTitle {
     font-size: 1rem;
-    color: #202020;
+    color: $soft-black;
     margin: 0;
     flex-grow: 100;
 }
@@ -145,7 +146,7 @@ $transition: all 0.2s ease-in-out;
     background: #fff;
     border: 0;
     box-shadow: none;
-    color: #202020;
+    color: $soft-black;
     
     &:hover { 
         color: #000; 
@@ -156,15 +157,15 @@ $transition: all 0.2s ease-in-out;
 
 .RemoveComic {
     background: #fff;
-    border: 1px solid #f0141e;
+    border: 1px solid $primary-color;
     box-shadow: none;
-    color: #f0141e;
+    color: $primary-color;
     padding: 4px 8px;
 
     &:hover { 
-        color: #f0141e; 
+        color: $primary-color;
         box-shadow: none;
-        border: 1px solid #f0141e;
+        border: 1px solid $primary-color;
         background: #fff;
     }
 }
@@ -193,7 +194,7 @@ $transition: all 0.2s ease-in-out;
         height: 36px;
         border: 0;
         border: {
-            bottom: 2px solid #202020;
+            bottom: 2px solid $soft-black;
             radius: 0;
         }
         box-shadow: none;
@@ -202,22 +203,17 @@ $transition: all 0.2s ease-in-out;
 
         &:focus {
             outline: none;
-            border-bottom: 2px solid #f0141e;
+            border-bottom: 2px solid $primary-color;
             transition: $transition;
 
             ~ i { color: #f0141e; }
         }
 
-        /* Chrome, Firefox, Opera, Safari 10.1+ */
         &::placeholder { 
             color: #ccc;
             opacity: 1;
-        }
-        
-        /* Internet Explorer 10-11 */
+        }        
         &:-ms-input-placeholder { color: #ccc; }
-        
-        /* Microsoft Edge */
         &::-ms-input-placeholder { color: #ccc; }
 
     }
@@ -234,4 +230,26 @@ $transition: all 0.2s ease-in-out;
     padding: 15px;
     justify-content: flex-end;
     border-top: 1px solid #ddd;
+}
+
+@media(max-width: $breakpoint-xs) {
+    .Body {
+        .List {
+            text-align: center;
+    
+            li { 
+                display: block; 
+                padding: 15px;
+                + li { margin-top: 15px; }
+            }
+    
+            img {
+                max-height: 150px;
+                display: block;
+                margin: 0 auto 15px;
+            }
+        }
+
+        .ComicTitle { margin-bottom: 15px; }
+    }
 }
