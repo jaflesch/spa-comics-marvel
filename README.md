@@ -17,6 +17,8 @@ Para a realização da tarefa solicitada, foi adotada a seguinte solução: cria
 
 Esta estratégia foi utilizada a fim de minimizar a quantidade de processos de instalação e configuração durante a avaliação desta submissão.
 
+> **Atenção**: a plataforma possui um limite diário para envio de 200 e-mails.
+
 ## Desenvolvimento e homologação
 
 Todo o projeto foi desenvolvimento e homologado nos navegadores Google Chrome e Mozilla Firefox. Demais navegadores não foram homologados e, portanto, podem apresentar comportamento inesperado, especialmente com regras específicas de folha de estilos.
