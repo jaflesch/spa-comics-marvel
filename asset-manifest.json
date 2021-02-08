@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/spa-comics-marvel/static/css/main.9dd639fd.chunk.css",
-    "main.js": "/spa-comics-marvel/static/js/main.9d6de679.chunk.js",
-    "main.js.map": "/spa-comics-marvel/static/js/main.9d6de679.chunk.js.map",
+    "main.css": "/spa-comics-marvel/static/css/main.5a878b58.chunk.css",
+    "main.js": "/spa-comics-marvel/static/js/main.914a2187.chunk.js",
+    "main.js.map": "/spa-comics-marvel/static/js/main.914a2187.chunk.js.map",
     "runtime-main.js": "/spa-comics-marvel/static/js/runtime-main.76c08707.js",
     "runtime-main.js.map": "/spa-comics-marvel/static/js/runtime-main.76c08707.js.map",
-    "static/js/2.26476ba7.chunk.js": "/spa-comics-marvel/static/js/2.26476ba7.chunk.js",
-    "static/js/2.26476ba7.chunk.js.map": "/spa-comics-marvel/static/js/2.26476ba7.chunk.js.map",
+    "static/js/2.f3818cec.chunk.js": "/spa-comics-marvel/static/js/2.f3818cec.chunk.js",
+    "static/js/2.f3818cec.chunk.js.map": "/spa-comics-marvel/static/js/2.f3818cec.chunk.js.map",
     "static/js/3.bccb7fc7.chunk.js": "/spa-comics-marvel/static/js/3.bccb7fc7.chunk.js",
     "static/js/3.bccb7fc7.chunk.js.map": "/spa-comics-marvel/static/js/3.bccb7fc7.chunk.js.map",
     "index.html": "/spa-comics-marvel/index.html",
-    "static/css/main.9dd639fd.chunk.css.map": "/spa-comics-marvel/static/css/main.9dd639fd.chunk.css.map",
-    "static/js/2.26476ba7.chunk.js.LICENSE.txt": "/spa-comics-marvel/static/js/2.26476ba7.chunk.js.LICENSE.txt",
+    "static/css/main.5a878b58.chunk.css.map": "/spa-comics-marvel/static/css/main.5a878b58.chunk.css.map",
+    "static/js/2.f3818cec.chunk.js.LICENSE.txt": "/spa-comics-marvel/static/js/2.f3818cec.chunk.js.LICENSE.txt",
     "static/media/marvel.99c8a213.svg": "/spa-comics-marvel/static/media/marvel.99c8a213.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.76c08707.js",
-    "static/js/2.26476ba7.chunk.js",
-    "static/css/main.9dd639fd.chunk.css",
-    "static/js/main.9d6de679.chunk.js"
+    "static/js/2.f3818cec.chunk.js",
+    "static/css/main.5a878b58.chunk.css",
+    "static/js/main.914a2187.chunk.js"
   ]
 }
