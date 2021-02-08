@@ -2,6 +2,7 @@ import CardListCSS from './CardList.module.scss'
 import ComicCard from '../ComicCard/ComicCard'
 import Loader from '../UI/Loader/Loader'
 import Alert from '../UI/Alert/Alert'
+import Backdrop from '../UI/Backdrop/Backdrop'
 
 const cardList = (props) => {
     let comics = (
@@ -9,6 +10,18 @@ const cardList = (props) => {
             <p>Nenhum resultado encontrado para a pesquisa realizada.</p>
         </div>
     )
+
+    // Lazy Load
+    let lazyLoading = null
+    if(props.lazyLoading) {
+        lazyLoading = (
+            <Backdrop visible>
+                <div className={ CardListCSS.LazyLoadContainer }>
+                    <Loader show/>
+                </div>
+            </Backdrop>
+        )
+    }
 
     // Loading content
     if(props.loading) {
@@ -18,8 +31,7 @@ const cardList = (props) => {
                 <Loader show />
             </div>
         )
-    }
-
+    }    
     // Network error
     else if(props.comics === -1) {
         comics = (
@@ -45,7 +57,10 @@ const cardList = (props) => {
     }
 
     return (
-        <div className={ CardListCSS.Grid }>{ comics }</div>
+        <div className={ CardListCSS.Grid }>
+            { comics }
+            { lazyLoading }
+        </div>
     )
 }
 

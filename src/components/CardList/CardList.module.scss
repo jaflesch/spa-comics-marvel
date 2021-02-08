@@ -4,7 +4,6 @@
     flex-shrink: 0;
     flex-grow: 1;
     align-items: flex-start;
-    justify-content: space-between;
     margin-top: 30px;
 }
 
@@ -14,4 +13,15 @@
 }
 .Feedback {
     text-align: center;
+}
+
+.LazyLoadContainer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: rgba(255,255,255,.75);
+    padding: 0 15px;
+    border-radius: 4px;
+    margin: 0 auto;
+    transform: translate3d(-50%, -50%, 0);
 }

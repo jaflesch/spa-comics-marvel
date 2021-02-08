@@ -15,10 +15,11 @@ class MarvelAPI {
         })
     }  
 
-    getComics (title, callback) {
+    getComics (title, offset, callback) {
         let titleSearch = (title) ? `titleStartsWith=${title}` : ''
-
-        return this.axiosInstance.get(`/comics?${titleSearch}&orderBy=-focDate&apikey=${this.publicKey}`).then((response) => {
+        offset = (offset) ? `&offset=${offset}` : ''
+        
+        return this.axiosInstance.get(`/comics?${titleSearch}&orderBy=-focDate${offset}&apikey=${this.publicKey}`).then((response) => {
             return response.data
         })
     }  

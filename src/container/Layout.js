@@ -14,7 +14,6 @@ import SendEmailButton from '../components/SendEmailButton/SendEmailButton'
 class Layout extends Component {
     constructor(props) {
         super(props) 
-		this.searchTitle = null
 		this.currentYear = new Date().getFullYear()
 		this.socialMedia = [
 			{
@@ -29,36 +28,53 @@ class Layout extends Component {
 			}
 		]
     }
-
+	
     state = {
 		comics: [],
+		offsetComics: 0,
 		comicDetail: null,
+		searchTitle: "",
+		lastFetchTitle: "",
 		isLoading: false,
 		isModalOpen: false,
 		isLoadingModal: true,
+		isLazyLoading: false,
 		selectedComics: []
 	}
 
     componentDidMount() {
-		this.setState({isLoading: true })
+		this.setState({ isLoading: true })
 		this.fetchComics()
+		window.addEventListener('scroll', this.infiniteScroll);
     }
     
+	infiniteScroll = () => {
+		if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {	
+			this.setState({ isLazyLoading: true })	
+			this.fetchComics(this.state.searchTitle)
+		}
+	}
+
     // Fetch data
 	fetchComics = (title) => {
-		let marvelAPIInstance = new MarvelAPI()
-
-		marvelAPIInstance.getComics(title).then((response) => {
-			this.setState({
-				comics: response.data.results,
-				isLoading: false
-			})
+		const offsetComics = (this.state.lastFetchTitle === this.state.searchTitle) ? this.state.comics.length : 0				
+		
+		let marvelAPIInstance = new MarvelAPI()		
+		marvelAPIInstance.getComics(title, offsetComics).then((response) => {			
+			this.setState((prevState) => ({
+				comics: [...prevState.comics, ...response.data.results],
+				offsetComics: offsetComics,
+				isLoading: false,
+				isLazyLoading: false
+			}))
 		})
 		.catch((err) => {
 			this.setState({
 				comics: -1,
+				offsetComics: 0,
 				selectedComics: -1,
-				isLoading: false
+				isLoading: false,
+				isLazyLoading: false
 			})
 		})	
 	}
@@ -82,12 +98,20 @@ class Layout extends Component {
 
     // Handler
 	inputChangedHandler = (event) => {
-		this.searchTitle = event.target.value
+		this.setState({
+			searchTitle: event.target.value
+		})
 	}
 
 	searchComicsHandler = (event) => {
 		event.preventDefault()
-		this.fetchComics(this.searchTitle)
+		this.setState({ 
+			comics: [],
+			isLoading: true,
+			offsetComics: 0,
+			lastFetchTitle: this.state.searchTitle
+		})
+		this.fetchComics(this.state.searchTitle)
 	}
 
 	showMoreHandler = (id) => {
@@ -157,6 +181,7 @@ class Layout extends Component {
 							comics={ this.state.comics } 
 							clickedComic={ this.showMoreHandler }
 							loading={ this.state.isLoading }
+							lazyLoading={ this.state.isLazyLoading }
 						/>						
 
 						<SendEmailButton 
