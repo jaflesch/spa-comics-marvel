@@ -13,19 +13,23 @@ class Modal extends Component {
     }
 
     renderModalBody = () => {
+        // Carregando conteúdo (fetch por id da comic)
         if(this.props.loading) {
             return (
                 <Loader show />
             )   
         }
+        // Erro de conexão
         else if(this.props.comic === -1) {
             return (
                 <Alert type="Danger">Ops! Ocorreu um erro ao processar sua requisição. Por favor, tente novamente.</Alert>
             )
         }
         else {
+            // Formata valores
             const comic = parseComicDetail(this.props.comic)
 
+            // Gera lista de links de interesse na comic
             const listaLinks = comic.urls.map((url) => {
                 const type = url.type === "detail" ? "+ Detalhes" : "Comprar"
                 return (
@@ -33,6 +37,7 @@ class Modal extends Component {
                 )
             })
 
+            // Se comic possui versão para leitura online
             let digitalId = null
             if(comic.digitalId > 0) {
                 digitalId = (
@@ -67,12 +72,13 @@ class Modal extends Component {
     }
     
     render() {
-        // Handle modal show animation
+        // Animação do modal
         let containerClasses = [ModalClass.Container]
         if(this.props.visible) {
             containerClasses.push(ModalClass.Animation)
         }     
         
+        // Toggle de comic (Selecionar/Remover) da lista de selecionados (para envio de e-mail)
         let buttonLabel = "Selecionar"
         if(this.props.comic) {
             const comicId = this.props.comic.id		
@@ -82,6 +88,8 @@ class Modal extends Component {
                 buttonLabel = 'Remover'
             }
         }
+
+        // Exibição condicional do botão de Seleção
         let buttonSelect = null 
         if(this.props.comic !== -1) (
             buttonSelect = (

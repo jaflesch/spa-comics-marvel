@@ -48,7 +48,9 @@ class Layout extends Component {
 		window.addEventListener('scroll', this.infiniteScroll);
     }
     
+	// Bindings
 	infiniteScroll = () => {
+		// Se chega no final da página, carrega mais comics
 		if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {	
 			this.setState({ isLazyLoading: true })	
 			this.fetchComics(this.state.searchTitle)
@@ -57,6 +59,7 @@ class Layout extends Component {
 
     // Fetch data
 	fetchComics = (title) => {
+		// Se alterou o filtro por título, reinicia contador para offset
 		const offsetComics = (this.state.lastFetchTitle === this.state.searchTitle) ? this.state.comics.length : 0				
 		
 		let marvelAPIInstance = new MarvelAPI()		
@@ -96,11 +99,9 @@ class Layout extends Component {
 		})
 	}
 
-    // Handler
+    // Handlers
 	inputChangedHandler = (event) => {
-		this.setState({
-			searchTitle: event.target.value
-		})
+		this.setState({ searchTitle: event.target.value })
 	}
 
 	searchComicsHandler = (event) => {
@@ -127,6 +128,7 @@ class Layout extends Component {
 	}
 	
 	selectComicHandler = (comic) => {
+		// Aplica toggle de comic selecionada/removida
 		const comicId = comic.id
 		const selectedComics = [...this.state.selectedComics]
 		let index = selectedComics.findIndex(el => el.id === comicId)		

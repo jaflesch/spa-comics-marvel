@@ -8,16 +8,19 @@ import { getThumbnailPath, isValidEmail } from '../../../utils/Utils'
 
 class ModalMail extends Component {
     renderModalBody = () => {
+        // Carregando conteúdo (envio de e-mail)
         if(this.props.loading) {
             return (
                 <Loader show />
             )   
         }
+        // Erro de conexão
         else if(this.props.selectedComics === -1) {
             return (
                 <Alert type="Danger">Ops! Ocorreu um erro ao processar sua requisição. Por favor, tente novamente.</Alert>
             )
         }
+        // Mensagem de feedback após envio de email
         else if(this.props.emailSent) {
             return (
                 <div className={ ModalClass.Detail }>
@@ -27,13 +30,15 @@ class ModalMail extends Component {
                 </div>
             )
         }
+        // Renderização da lista de comics selecionados
         else {
-            // Mount comic list content
+            // Fallbacks
             let sendToInput = null
             let selectedComicsList = (
                 <li className={ ModalClass.ListDefault }>Nenhum quadrinho selecionado</li>
             )
             
+            // Monta lista de comics selecionados
             if(this.props.selectedComics.length > 0) {
                 selectedComicsList = this.props.selectedComics.map((comic) => {
                     const thumbnail = getThumbnailPath(comic.thumbnail)
@@ -49,6 +54,7 @@ class ModalMail extends Component {
                     )
                 })
 
+                // Campo para definir destinatário
                 sendToInput = (
                     <div className={ ModalClass.Form }>
                         <label>Enviar lista para</label>
@@ -76,12 +82,13 @@ class ModalMail extends Component {
     }
     
     render() {
-        // Handle modal show animation
+        // Animação do modal
         let containerClasses = [ModalClass.Container]
         if(this.props.visible) {
             containerClasses.push(ModalClass.Animation)
         }     
         
+        // Exibição condicional do botão de enviar e-mail
         let sendEmailButton = null 
         if(this.props.selectedComics.length > 0 && isValidEmail(this.props.sendTo)) {
             sendEmailButton = (

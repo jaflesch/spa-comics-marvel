@@ -23,7 +23,7 @@ const cardList = (props) => {
         )
     }
 
-    // Loading content
+    // Carrefando conteúdo
     if(props.loading) {
         comics = (
             <div className={ CardListCSS.Loader } >
@@ -32,7 +32,7 @@ const cardList = (props) => {
             </div>
         )
     }    
-    // Network error
+    // Erro de conexão / fetch
     else if(props.comics === -1) {
         comics = (
             <div className={ CardListCSS.Feedback } >
@@ -40,7 +40,7 @@ const cardList = (props) => {
             </div>
         )
     }
-    // Render fetched content
+    // Renderização de quadrinhos retornados da consulta
     else if(props.comics.length > 0) {
         comics = props.comics.map((comic) => {
             return <ComicCard

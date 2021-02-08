@@ -9,6 +9,7 @@ import { getThumbnailPath } from '../../utils/Utils'
 const ComicCard = (props) => {
     const projectContext = useContext(ProjectContext)
 
+    // Efeitos de hover no componente em questão
     const onMouseOutHandler = (event) => {
         const nodeList = document.querySelectorAll(`.${ComicCardCSS.Fog}`)
         
@@ -16,7 +17,6 @@ const ComicCard = (props) => {
             node.classList.remove(ComicCardCSS.Fog)
         }
     }
-
     const onMouseEnterHandler = (event) => {
         const nodeList = document.querySelectorAll(`.${ComicCardCSS.Card}`)
         
@@ -26,6 +26,7 @@ const ComicCard = (props) => {
         event.target.classList.remove(ComicCardCSS.Fog)        
     }
 
+    // Validação se componente já foi selecionado (para posterior envio de e-mail)
     const comicId = props.id
     const thumbnail = getThumbnailPath(props.thumbnail)
     let isInputChecked = false
