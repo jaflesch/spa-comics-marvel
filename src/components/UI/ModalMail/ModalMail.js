@@ -7,10 +7,6 @@ import ModalClass from './ModalMail.module.scss'
 import { getThumbnailPath, isValidEmail } from '../../../utils/Utils'
 
 class ModalMail extends Component {
-    shouldComponentUpdate(nextProps, nextState) {
-        return true
-    }
-
     renderModalBody = () => {
         if(this.props.loading) {
             return (

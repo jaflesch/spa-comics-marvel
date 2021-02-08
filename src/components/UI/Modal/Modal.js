@@ -12,10 +12,6 @@ class Modal extends Component {
         this.readMarvelURL = 'https://read.marvel.com/#/book'
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return true
-    }
-
     renderModalBody = () => {
         if(this.props.loading) {
             return (
@@ -31,7 +27,7 @@ class Modal extends Component {
             const comic = parseComicDetail(this.props.comic)
 
             const listaLinks = comic.urls.map((url) => {
-                const type = url.type === "detail" ? "Detalhes" : "Comprar"
+                const type = url.type === "detail" ? "+ Detalhes" : "Comprar"
                 return (
                     <a key={url.url} href={ url.url } target="_blank" rel="noreferrer" className={ ModalClass.URLButton }>{ type }</a>
                 )
