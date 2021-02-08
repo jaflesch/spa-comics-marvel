@@ -1,4 +1,4 @@
-import AlertClass from './Alert.module.css'
+import AlertClass from './Alert.module.scss'
 
 const alert = props => {
     const renderDefaultAlert = () => {
